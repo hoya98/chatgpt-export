@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ChatGPT Export - Privacy Policy</title>
+  <style>
+    body { font-family: -apple-system, sans-serif; max-width: 700px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #333; }
+    h1 { font-size: 24px; margin-bottom: 8px; }
+    h2 { font-size: 18px; margin-top: 24px; }
+    .date { color: #888; font-size: 14px; margin-bottom: 24px; }
+  </style>
+</head>
+<body>
+  <h1>Privacy Policy</h1>
+  <p class="date">Effective Date: February 10, 2026</p>
+
+  <p><strong>ChatGPT Export</strong> is a browser extension and macOS app that helps you export your own ChatGPT conversation data.</p>
+
+  <h2>Data Collection</h2>
+  <p>This software does <strong>not collect, store, transmit, or share any user data</strong>. Period.</p>
+
+  <h2>How It Works</h2>
+  <p>The software runs entirely on your device. It:</p>
+  <ul>
+    <li>Reads your existing ChatGPT session token (already in your browser) to authenticate API requests</li>
+    <li>Calls ChatGPT's internal API endpoints to retrieve <strong>your own</strong> conversation data</li>
+    <li>Packages the data into a JSON file and saves it directly to your computer</li>
+  </ul>
+  <p>All processing happens locally. No data is sent to any external server, analytics service, or third party.</p>
+
+  <h2>Chrome Extension Permissions</h2>
+  <ul>
+    <li><strong>activeTab</strong>: Required to interact with the chatgpt.com page when you click the export button</li>
+    <li><strong>cookies</strong>: Required to detect your workspace account ID for Team/Business workspace exports</li>
+    <li><strong>host_permissions (chatgpt.com)</strong>: Required to run the export script on the ChatGPT website</li>
+  </ul>
+
+  <h2>macOS App Permissions</h2>
+  <ul>
+    <li><strong>Outgoing Network Connections</strong>: Required to communicate with chatgpt.com to retrieve your conversations</li>
+    <li><strong>File Access</strong>: Required to save the exported JSON file to your chosen location</li>
+  </ul>
+
+  <h2>Third-Party Services</h2>
+  <p>This software communicates only with <code>chatgpt.com</code> (OpenAI's servers) using your existing authenticated session. It does not communicate with any other servers or services.</p>
+
+  <h2>Data Storage</h2>
+  <p>The software does not store any data beyond what you explicitly save. The exported file is saved directly to your computer at a location you choose.</p>
+
+  <h2>Open Source</h2>
+  <p>This software is fully open source. You can review the complete source code at <a href="https://github.com/hoya98/chatgpt-export">github.com/hoya98/chatgpt-export</a>.</p>
+
+  <h2>Contact</h2>
+  <p>For questions about this privacy policy, open an issue on <a href="https://github.com/hoya98/chatgpt-export/issues">GitHub</a>.</p>
+</body>
+</html>
