@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 360px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #1a1a2e;
+      color: #e0e0e0;
+      padding: 20px;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .header svg { width: 28px; height: 28px; }
+    .header h1 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+    }
+    .subtitle {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 20px;
+    }
+    .status-card {
+      background: #16213e;
+      border: 1px solid #2a2a4a;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .status-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #888;
+      margin-bottom: 8px;
+    }
+    .status-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: #10b981;
+    }
+    .status-value.error { color: #ef4444; }
+    .status-value.pending { color: #888; }
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .stat {
+      background: #16213e;
+      border: 1px solid #2a2a4a;
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 20px;
+      font-weight: 700;
+      color: #60a5fa;
+    }
+    .stat-label {
+      font-size: 11px;
+      color: #888;
+      margin-top: 4px;
+    }
+    .progress-container {
+      margin-bottom: 16px;
+      display: none;
+    }
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: #2a2a4a;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #10b981, #60a5fa);
+      border-radius: 3px;
+      transition: width 0.3s ease;
+      width: 0%;
+    }
+    .progress-text {
+      font-size: 12px;
+      color: #888;
+      margin-top: 6px;
+      text-align: center;
+    }
+    .btn {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff;
+    }
+    .btn-primary:hover { opacity: 0.9; }
+    .btn-primary:disabled {
+      background: #2a2a4a;
+      color: #666;
+      cursor: not-allowed;
+    }
+    .btn-secondary {
+      background: #16213e;
+      border: 1px solid #2a2a4a;
+      color: #e0e0e0;
+      margin-top: 8px;
+    }
+    .btn-secondary:hover { border-color: #10b981; }
+    .options {
+      margin-bottom: 16px;
+    }
+    .option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 0;
+    }
+    .option input[type="checkbox"] {
+      accent-color: #10b981;
+    }
+    .option label {
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .warning {
+      background: #422006;
+      border: 1px solid #92400e;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 12px;
+      color: #fbbf24;
+      margin-bottom: 16px;
+      display: none;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 12px;
+      font-size: 11px;
+      color: #555;
+    }
+    .footer a { color: #60a5fa; text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+    .log-area {
+      display: none;
+      background: #0d1117;
+      border: 1px solid #2a2a4a;
+      border-radius: 8px;
+      padding: 10px;
+      margin-top: 12px;
+      max-height: 120px;
+      overflow-y: auto;
+      font-family: 'SF Mono', Monaco, monospace;
+      font-size: 11px;
+      color: #7ee787;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+      <polyline points="7 10 12 15 17 10"/>
+      <line x1="12" y1="15" x2="12" y2="3"/>
+    </svg>
+    <h1>ChatGPT Export</h1>
+  </div>
+  <p class="subtitle">Bulk export all conversations, including Team &amp; Business workspaces.</p>
+
+  <div id="warningBox" class="warning">
+    You must be on chatgpt.com and logged in to export.
+  </div>
+
+  <div class="status-card">
+    <div class="status-label">Status</div>
+    <div id="statusText" class="status-value pending">Ready</div>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div id="convCount" class="stat-number">-</div>
+      <div class="stat-label">Conversations</div>
+    </div>
+    <div class="stat">
+      <div id="attachCount" class="stat-number">-</div>
+      <div class="stat-label">Attachments</div>
+    </div>
+  </div>
+
+  <div id="progressContainer" class="progress-container">
+    <div class="progress-bar">
+      <div id="progressFill" class="progress-fill"></div>
+    </div>
+    <div id="progressText" class="progress-text">0 / 0</div>
+  </div>
+
+  <div class="options">
+    <div class="option">
+      <input type="checkbox" id="includeAttachments" checked>
+      <label for="includeAttachments">Download file attachments</label>
+    </div>
+    <div class="option">
+      <input type="checkbox" id="includeArchived" checked>
+      <label for="includeArchived">Include archived conversations</label>
+    </div>
+  </div>
+
+  <button id="exportBtn" class="btn btn-primary">Export All Conversations</button>
+
+  <div id="logArea" class="log-area"></div>
+
+  <div class="footer">
+    <a href="https://github.com/hoya98/chatgpt-export" target="_blank">GitHub</a> &middot; v1.0.0
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
