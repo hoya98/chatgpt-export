@@ -1,0 +1,38 @@
+ChatGPT Export - Chrome Extension & macOS App
+Source-Available License
+
+Copyright (c) 2026 Marc Nock. All rights reserved.
+
+TERMS AND CONDITIONS
+
+1. VIEWING AND PERSONAL USE
+   You may view, download, and use this software for your own personal,
+   non-commercial purposes free of charge.
+
+2. RESTRICTIONS
+   You may NOT, without prior written permission from the copyright holder:
+   a. Redistribute, republish, or repackage this software
+   b. Sell, sublicense, or commercially distribute this software
+   c. Upload this software to any app store, extension store, or marketplace
+   d. Create derivative works for commercial distribution
+   e. Remove or alter any copyright notices
+
+3. OFFICIAL DISTRIBUTION
+   The only authorized distribution channels for the packaged Chrome
+   extension and macOS app are:
+   a. Chrome Web Store - published by Marc Nock
+   b. Mac App Store - published by Marc Nock
+   c. GitHub (github.com/hoya98/chatgpt-export) - source code viewing only
+
+4. THE FREE CONSOLE SCRIPT
+   The browser console script located in scripts/export.js is separately
+   licensed under the MIT License (see /LICENSE) and may be freely used,
+   modified, and distributed.
+
+5. NO WARRANTY
+   THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+   EXPRESS OR IMPLIED. THE COPYRIGHT HOLDER SHALL NOT BE LIABLE FOR ANY
+   CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM THE USE OF THIS SOFTWARE.
+
+For commercial licensing inquiries, contact via GitHub Issues:
+https://github.com/hoya98/chatgpt-export/issues
